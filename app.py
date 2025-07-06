@@ -42,4 +42,4 @@ app.register_blueprint(auth_bp, url_prefix="/api/auth")
 
 # Solo si ejecutas directamente (no en producción)
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=True, threaded=True)
