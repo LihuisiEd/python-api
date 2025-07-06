@@ -60,8 +60,6 @@ for i in range(1, 6):
         "correo": cliente_user["email"],
         "telefono": fake.phone_number(),
         "direccion": fake.address(),
-        "fecha_nacimiento": fake.date_of_birth(minimum_age=18, maximum_age=80),
-        "preferencias": random.sample(["gluten-free", "soja", "frutos-secos", "lacteos-veganos"], k=2),
         "puntos_fidelidad": random.randint(0, 500),
         "created_at": cliente_user["created_at"],
         "updated_at": datetime.now()
