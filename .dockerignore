@@ -1,12 +1,6 @@
 .env
-*.pyc
-*.pyo
-*.pyd
 __pycache__
-*.sqlite3
-.DS_Store
-.env.local
-node_modules
-npm-debug.log
-.git
-.gitignore
+*.pyc
+*.log
+.vscode
+*.md

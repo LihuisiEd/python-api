@@ -1,29 +1,26 @@
 version: '3.8'
 
 services:
-  web:
-    build: .
-    ports:
-      - "5000:5000"
-    environment:
-      - FLASK_ENV=production
-      - MONGO_URI=mongodb://mongo:27017/tu_db
-    depends_on:
-      - mongo
-    restart: unless-stopped
-    volumes:
-      - .:/app
-
   mongo:
-    image: mongo:5.0
+    image: mongo:6.0
+    container_name: mongo
     ports:
       - "27017:27017"
     volumes:
-      - mongodb_data:/data/db
+      - mongo_data:/data/db
+
+  flask-api:
+    build: .
+    container_name: flask-api
+    ports:
+      - "5000:5000"
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=example
-    restart: unless-stopped
+      - MONGO_URI=mongodb://mongo:27017
+      - DB_NAME=react-pf
+      - JWT_SECRET_KEY=123456
+      - CORS_ORIGINS=http://localhost:3000
+    depends_on:
+      - mongo
 
 volumes:
-  mongodb_data:
+  mongo_data:
