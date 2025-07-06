@@ -1,13 +1,17 @@
+import os
 from pymongo import MongoClient
 from werkzeug.security import generate_password_hash
 from datetime import datetime, timedelta
 import random
 from faker import Faker
 
+MONGO_URI = os.environ.get("MONGO_URI", "mongodb://localhost:27017")
+DB_NAME = os.environ.get("DB_NAME", "react-pf")
+
 # Configuración inicial
 fake = Faker('es_ES')
-client = MongoClient("mongodb://localhost:27017/")
-db = client["react-pf"]
+client = MongoClient(MONGO_URI)
+db = client[DB_NAME]
 
 # Limpiar colecciones
 collections = [

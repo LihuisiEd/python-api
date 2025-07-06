@@ -21,6 +21,15 @@ services:
       - CORS_ORIGINS=http://localhost:3000
     depends_on:
       - mongo
+  
+  seed:
+    build: .
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo:27017
+      - DB_NAME=react-pf
+    command: ["python", "seed.py"]
 
 volumes:
   mongo_data:
