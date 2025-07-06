@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=production
+      - MONGO_URI=mongodb://mongo:27017/tu_db
+    depends_on:
+      - mongo
+    restart: unless-stopped
+    volumes:
+      - .:/app
+
+  mongo:
+    image: mongo:5.0
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=example
+    restart: unless-stopped
+
+volumes:
+  mongodb_data:
